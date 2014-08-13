@@ -1,0 +1,5 @@
+Options -Indexes
+ExpiresActive on
+ExpiresDefault M86400
+ErrorDocument 404 /404.php
+DirectoryIndex index.php
