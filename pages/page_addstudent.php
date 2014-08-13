@@ -7,7 +7,6 @@
 		Email: <br><input type='text' name='email'><br>
 		Password: <br><input type='password' name='password'><br>
 		Repeat Password: <br><input type='password' name='password2'><br>
-		Student ID: <br><input type='text' name='student_id'><br>
 		Validation Code: <br><input type='text' name='validation_code'><br>
 		Gender:<br>
 		M <input type='radio' name='male'>

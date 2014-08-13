@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 $HOST="173.194.252.10";
@@ -16,11 +15,19 @@ if(isset($_POST['email'])){
 if(isset($_POST['teacher_id'])){
 	$teacher_id = $_POST['teacher_id'];
 }
-if(isset($_POST['fname'])){
-	$fname = $_POST['fname'];
+if(isset($_POST['newteacher_id'])){
+	$newteacher_id = $_POST['newteacher_id'];
 }
-if(isset($_POST['lname'])){
-	$lname = $_POST['lname'];
+
+
+//checks if id is taken
+$query = mysqli_query($connect,"SELECT * FROM teachers WHERE teacher_id='$newteacher_id'");
+$numrows = mysqli_num_rows($query);
+//if a result is thrown
+if($numrows == 1){
+	$_SESSION['message'] = "Teacher ID is taken.";
+	header("Location:  ../pages/main_admin.php?page=ModifyTeacher&modtype=3");
+	exit;
 }
 
 
@@ -29,29 +36,27 @@ $query = mysqli_query($connect,"SELECT * FROM teachers WHERE teacher_id = '$teac
 
 $num_rows = mysqli_num_rows($query);
 
-//checks if student exists in the table
+//checks if teacher exists in the table
 if($num_rows == 1){
-	//compares student;s validation code with teachers validation codes
-	$row = mysqli_fetch_assoc($query);
-	//modify student
+
+	//modify teacher
 	$query = mysqli_query($connect,
 		"UPDATE teachers
-		 SET fname='$fname', lname='$lname'
+		 SET teacher_id='$newteacher_id'
 		 WHERE email='$email'; ");
 
 	$_SESSION['message'] = "Teacher successfully modified.";
-	header("Location:  ../pages/main_admin.php?page=ModifyTeacher&modtype=1");
+	header("Location:  ../pages/main_admin.php?page=ModifyTeacher&modtype=3");
 	exit;
-
+		
 	
 
 }else{
 	//display error "student not found"
 	$_SESSION['message'] = "Teacher not found.";
-	header("Location:  ../pages/main_admin.php?page=ModifyTeacher&modtype=1");
+	header("Location: ../pages/main_admin.php?page=ModifyTeacher&modtype=3");
 	exit;
 }
-
 
 
 

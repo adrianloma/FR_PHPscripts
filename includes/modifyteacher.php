@@ -27,7 +27,7 @@
 				echo "<form action='../includes/change_teacherid.php' method='POST'>
 						Email: <br><input type='text' name='email'><br>
 						Teacher ID: <br><input type='text' name='teacher_id'><br>
-						New Teacher ID: <br><input type='text' name='newTeacher_id'><br>
+						New Teacher ID: <br><input type='text' name='newteacher_id'><br>
 						<br><input type='submit' value='Submit'>
 					</form>";
 				break;

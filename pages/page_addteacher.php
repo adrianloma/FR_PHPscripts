@@ -7,7 +7,6 @@
 		Email: <br><input type='text' name='email'><br>
 		Password: <br><input type='password' name='password'><br>
 		Repeat Password: <br><input type='password' name='password2'><br>
-		Teacher ID: <br><input type='text' name='teacher_id'><br>
 		<br><input type='submit' value='Submit'>
 	</form>
 </div>

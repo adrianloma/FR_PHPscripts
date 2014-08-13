@@ -2,6 +2,12 @@
 
 require('Blowfish/blowfish.class.php');
 
+$HOST="173.194.252.10";
+$USER="andres";
+$PSW="andres";
+$DB="FreedomRun";
+
+
 /*
 	$fname = $_POST['fname'];
 	$lname = $_POST['lname'];
@@ -29,10 +35,7 @@ require('Blowfish/blowfish.class.php');
 	$language=0;
 	$avatar=1;
 
-	$HOST="localhost";
-	$USER="root";
-	$PSW="";
-	$DB="prueba";
+	
 
 	$bcrypt = new Bcrypt(4);
 	$password = $bcrypt->hash($password);

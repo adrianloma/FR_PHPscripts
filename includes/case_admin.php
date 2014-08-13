@@ -14,10 +14,10 @@ switch($page){
 		include 'modifyteacher.php';
 		break;
 	case "DistrictTeachers":
-		include 'teacher_groups.php';
+		include 'show_teachers.php';
 		break;
 	case "GenerateValidationCodes":
-		include 'show_students.php';
+		include '../pages/page_generate_validation.php';
 		break;
 	default:
 		echo "This is the homepage";

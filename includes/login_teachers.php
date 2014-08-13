@@ -3,10 +3,10 @@
 	//blowfish encryption class
 	require('C:\xampp\htdocs\FreedomRun\Blowfish\blowfish.class.php');
 
-	$HOST="localhost";
-	$USER="root";
-	$PSW="";
-	$DB="prueba";
+$HOST="173.194.252.10";
+$USER="andres";
+$PSW="andres";
+$DB="FreedomRun";
 
 	if(isset($_POST['username']) && isset($_POST['password'])){
 		$username = $_POST['username'];

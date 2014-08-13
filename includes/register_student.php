@@ -2,12 +2,17 @@
 session_start();
 require('C:\xampp\htdocs\FreedomRun\Blowfish\blowfish.class.php');
 
+$HOST="173.194.252.10";
+$USER="andres";
+$PSW="andres";
+$DB="FreedomRun";
+
+
 	$fname = $_POST['fname'];
 	$lname = $_POST['lname'];
 	$email = $_POST['email'];
 	$password = $_POST['password'];
 	$password2 = $_POST['password2'];
-	$student_id = $_POST['student_id'];
 	$validation_code = $_POST['validation_code'];
 	
 
@@ -40,13 +45,6 @@ require('C:\xampp\htdocs\FreedomRun\Blowfish\blowfish.class.php');
 		exit;
 	}
 
-	//Lastname validation
-	if($student_id==''){
-		$_SESSION['message']="Please enter a Student ID";
-		header("Location: ../pages/main.php?page=AddStudent");
-		exit;
-	}
-
 	//Email validation
 	if($email==''){
 		$_SESSION['message']="Please enter an email";
@@ -59,11 +57,7 @@ require('C:\xampp\htdocs\FreedomRun\Blowfish\blowfish.class.php');
 	$avatar=1;
 
 
-	//Database connection params
-	$HOST="localhost";
-	$USER="root";
-	$PSW="";
-	$DB="prueba";
+
 
 
 	//Password validation
@@ -87,16 +81,6 @@ require('C:\xampp\htdocs\FreedomRun\Blowfish\blowfish.class.php');
 	//database connection
 	$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
 	
-	//Student ID Validation
-	$query = mysqli_query($connect,"SELECT * FROM students WHERE student_id='$student_id'");
-	$numrows = mysqli_num_rows($query);
-
-	//Checks if validation code exists in the database
-	if($numrows==1){
-		$_SESSION['message']="Student ID is taken.";
-		header("Location: ../pages/main.php?page=AddStudent");
-		exit;
-	}
 
 	//Validation code query
 	$query = mysqli_query($connect,"SELECT * FROM validations WHERE validation='$validation_code'");
@@ -116,8 +100,8 @@ require('C:\xampp\htdocs\FreedomRun\Blowfish\blowfish.class.php');
 	if($numrows==0){
 		//students table
 		$insert = mysqli_query($connect,
-			"INSERT INTO students (email, student_id, validation, fname, lname, gender, language, sound, avatar, password)
-				VALUES ('$email','$student_id','$validation_code','$fname','$lname','$gender','$language','$sound','$avatar','$password');"
+			"INSERT INTO students (email, validation, fname, lname, gender, language, sound, avatar, password)
+				VALUES ('$email','$validation_code','$fname','$lname','$gender','$language','$sound','$avatar','$password');"
 				
 		)or die(mysqli_error($connect));
 

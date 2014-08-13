@@ -2,11 +2,10 @@
 session_start();
 
 //Database connection params
-$HOST="localhost";
-$USER="root";
-$PSW="";
-$DB="prueba";
-
+$HOST="173.194.252.10";
+$USER="andres";
+$PSW="andres";
+$DB="FreedomRun";
 
 //database connection
 $connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");

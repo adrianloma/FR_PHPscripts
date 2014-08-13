@@ -1,4 +1,10 @@
 <?php
+//Database connection params
+$HOST="173.194.252.10";
+$USER="andres";
+$PSW="andres";
+$DB="FreedomRun";
+
 session_start();
 require('C:\xampp\htdocs\FreedomRun\Blowfish\blowfish.class.php');
 
@@ -7,7 +13,6 @@ require('C:\xampp\htdocs\FreedomRun\Blowfish\blowfish.class.php');
 	$email = $_POST['email'];
 	$password = $_POST['password'];
 	$password2 = $_POST['password2'];
-	$teacher_id = $_POST['teacher_id'];
 	$validation_code = $_POST['validation_code'];
 	
 	
@@ -26,12 +31,7 @@ require('C:\xampp\htdocs\FreedomRun\Blowfish\blowfish.class.php');
 		exit;
 	}
 
-	//Lastname validation
-	if($teacher_id==''){
-		$_SESSION['message']="Please enter a Student ID";
-		header("Location: ../pages/main_admin.php?page=AddTeacher");
-		exit;
-	}
+
 
 	//Email validation
 	if($email==''){
@@ -41,11 +41,6 @@ require('C:\xampp\htdocs\FreedomRun\Blowfish\blowfish.class.php');
 	}
 
 
-	//Database connection params
-	$HOST="localhost";
-	$USER="root";
-	$PSW="";
-	$DB="prueba";
 
 
 	//Password validation
@@ -69,17 +64,6 @@ require('C:\xampp\htdocs\FreedomRun\Blowfish\blowfish.class.php');
 	//database connection
 	$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
 	
-	//Student ID Validation
-	$query = mysqli_query($connect,"SELECT * FROM teachers WHERE teacher_id='$teacher_id'");
-	$numrows = mysqli_num_rows($query);
-
-	//Checks if validation code exists in the database
-	if($numrows==1){
-		$_SESSION['message']="Teacher ID is taken.";
-		header("Location: ../pages/main_admin.php?page=AddTeacher");
-		exit;
-	}
-
 	//Checks if teacher already exists in database
 	$query = mysqli_query($connect,"SELECT * FROM teachers WHERE email='$email'");
 	$numrows = mysqli_num_rows($query);
@@ -87,8 +71,8 @@ require('C:\xampp\htdocs\FreedomRun\Blowfish\blowfish.class.php');
 	if($numrows==0){
 		//students table
 		$insert = mysqli_query($connect,
-			"INSERT INTO teachers (email, teacher_id, fname, lname,password)
-				VALUES ('$email','$teacher_id','$fname','$lname','$password');"
+			"INSERT INTO teachers (email, fname, lname,password,district_email)
+				VALUES ('$email','$fname','$lname','$password','$_SESSION[CurrentUser]' );"
 				
 		)or die(mysqli_error($connect));
 

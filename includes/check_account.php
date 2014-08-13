@@ -1,10 +1,11 @@
 <?php
 session_start();
 //determina si la cuenta es de maestros o de administrador
-$HOST="localhost";
-$USER="root";
-$PSW="";
-$DB="prueba";
+$HOST="173.194.252.10";
+$USER="andres";
+$PSW="andres";
+$DB="FreedomRun";
+
 
 
 if(isset($_POST['username']) && isset($_POST['password'])){
