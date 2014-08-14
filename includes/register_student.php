@@ -83,7 +83,7 @@ $DB="FreedomRun";
 	
 
 	//Validation code query
-	$query = mysqli_query($connect,"SELECT * FROM validations WHERE validation='$validation_code'");
+	$query = mysqli_query($connect,"SELECT * FROM validations WHERE validation='$validation_code' and teacher_email='$_SESSION[CurrentUser]'");
 	$numrows = mysqli_num_rows($query);
 
 	//Checks if validation code exists in the database
@@ -97,11 +97,25 @@ $DB="FreedomRun";
 	$query = mysqli_query($connect,"SELECT * FROM students WHERE email='$email'");
 	$numrows = mysqli_num_rows($query);
 
+	$query2 = mysqli_query($connect,"SELECT COUNT(email) as num FROM students;");
+
+	$count = mysqli_fetch_assoc($query2);
+
+	$student_id = $count['num'];
+	$student_id +=1;
+
 	if($numrows==0){
 		//students table
 		$insert = mysqli_query($connect,
-			"INSERT INTO students (email, validation, fname, lname, gender, language, sound, avatar, password)
-				VALUES ('$email','$validation_code','$fname','$lname','$gender','$language','$sound','$avatar','$password');"
+			"INSERT INTO students (email,student_id, validation, fname, lname, gender, language, sound, avatar, password)
+				VALUES ('$email','$student_id','$validation_code','$fname','$lname','$gender','$language','$sound','$avatar','$password');"
+				
+		)or die(mysqli_error($connect));
+
+		//info screens
+		$insert = mysqli_query($connect,
+			"INSERT INTO info_screens(student_email)
+				VALUES ('$email');"
 				
 		)or die(mysqli_error($connect));
 
@@ -152,6 +166,8 @@ $DB="FreedomRun";
 		$_SESSION['message']="Student succesfully added.";
 		header("Location: ../pages/main.php?page=AddStudent");
 		exit;
+
+		
 		
 	}else{
 		$_SESSION['message']="Student was no succesfully added.";
