@@ -3,36 +3,48 @@
 	require('../Blowfish/blowfish.class.php');
 
 	$HOST="173.194.252.10";
-	$USER="andres";
-	$PSW="andres";
+	$USER="root";
+	$PSW="laracroft";
 	$DB="FreedomRun";
 
 	if(isset($_POST['username']) && isset($_POST['password'])){
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 	}
-	
+
+	//$connect = mysqli_connect($HOST,$USER,$PSW,$DB);
+
+	$connect = new mysqli(null,
+			  'root', // username
+			  'laracroft',     // password
+			  'FreedomRun',
+			  null,
+			  '/cloudsql/gathr-app-618:gathrdb'
+			  );
+
 	// $username = "andresgtz79@gmail.com";
 	// $password = "123456";
 	
 	//connection if there is a username and password exist
 	if($username && $password){
 
-		$connect = mysqli_connect($HOST,$USER,$PSW,$DB);
-		$query = mysqli_query($connect,"SELECT * FROM students WHERE email='$username'");
-		$numrows = mysqli_num_rows($query);
+		
+		//$query = mysqli_query($connect,"SELECT * FROM students WHERE email='$username'");
+		$query = $connect -> query("SELECT * FROM students WHERE email='$username'");
+		$array = $query -> fetch_assoc();
+		//$numrows = mysqli_num_rows($query);
 
 		//if username is found in the db.
-		if($numrows==1){
+		if($numrows==1 || true){
 
 			//fetches query into associative array
 			$array = $query->fetch_assoc();
 
 			//creates a Bcrypt object
 			$bcrypt= new Bcrypt(4);
-
+//
 			//uses Bcrypt method to verify if the password matches the database password
-			if($bcrypt->verify($password,$array['password'])){
+			if($bcrypt->verify($password,$array["password"])){
 				//falta agregar progress p1 y progress por pregunta al xml
 
 				$query2 = mysqli_query($connect,
@@ -51,37 +63,35 @@
 					");
 				$screens = mysqli_fetch_assoc($query3);
 
-				$stringXML = "
-					<?xml version= \"1.0\" encoding= \"UTF-8\" standalone=\"yes\"?>
-					<xml>
-						
-						<errorCode>0</errorCode>
-						<email>$array[email]</email>
-						<fname>$array[fname]</fname>
-						<lname>$array[lname]</lname>
-						<gender>$array[gender]</gender>
-						<language>$array[language]</language>
-						<sound>$array[sound]</sound>
-						<avatar>$array[avatar]</avatar>
-						<currentModule></currentModule>
-						<currentLevel></currentLevel>
-						<pantallasInforamtivas>
-							<p>$screens[screen_1]</p>
-							<p>$screens[screen_2]</p>
-							<p>$screens[screen_3]</p>
-							<p>$screens[screen_4]</p>
-							<p>$screens[screen_5]</p>
-							<p>$screens[screen_6]</p>
-							<p>$screens[screen_7]</p>
-							<p>$screens[screen_8]</p>
-							<p>$screens[screen_9]</p>
-							<p>$screens[screen_10]</p>
-							<p>$screens[screen_11]</p>
-							<p>$screens[screen_12]</p>
-						</pantallasInforamtivas>
-						<Levels>
-					
-					";
+				$stringXML = <<<XML
+<?xml version= \"1.0\" encoding= \"UTF-8\" standalone=\"yes\"?>
+<xml>
+	<errorCode>0</errorCode>
+	<email>$array[email]</email>
+	<fname>$array[fname]</fname>
+	<lname>$array[lname]</lname>
+	<gender>$array[gender]</gender>
+	<language>$array[language]</language>
+	<sound>$array[sound]</sound>
+	<avatar>$array[avatar]</avatar>
+	<currentModule></currentModule>
+	<currentLevel></currentLevel>
+	<pantallasInforamtivas>
+		<p>$screens[screen_1]</p>
+		<p>$screens[screen_2]</p>
+		<p>$screens[screen_3]</p>
+		<p>$screens[screen_4]</p>
+		<p>$screens[screen_5]</p>
+		<p>$screens[screen_6]</p>
+		<p>$screens[screen_7]</p>
+		<p>$screens[screen_8]</p>
+		<p>$screens[screen_9]</p>
+		<p>$screens[screen_10]</p>
+		<p>$screens[screen_11]</p>
+		<p>$screens[screen_12]</p>
+	</pantallasInforamtivas>
+	<Levels>
+XML;
 				for($i=1;$i<139;$i++){
 					if($i==1 or $i==24 or $i==48 or $i==69 or $i==91 or $i==112 or $i==128 ){
 						$stringXML .= "<Level>";
@@ -103,15 +113,14 @@
 					$stringXML .= "</Levels>";
 
 				$stringXML .= "</xml>";
-				echo $stringXML;	
+				echo $stringXML;					
 			}else{
-				$stringXML = "
-					<?xml version= \"1.0\" encoding= \"UTF-8\" standalone=\"yes\"?>
-					<xml>
-						
-						<errorCode>1</errorCode>
-					</xml>
-					";
+				$stringXML = <<<XML
+<?xml version= \"1.0\" encoding= \"UTF-8\" standalone=\"yes\"?>
+<xml>
+	<errorCode>1</errorCode>
+</xml>
+XML;
 				echo $stringXML;
 			}
 
@@ -120,7 +129,7 @@
 			$stringXML = "
 					<?xml version= \"1.0\" encoding= \"UTF-8\" standalone=\"yes\"?>
 					<xml>
-						
+						2
 						<errorCode>1</errorCode>
 					</xml>
 					";
@@ -129,13 +138,13 @@
 		}
 
 	}else{
-		$stringXML = "
-					<?xml version= \"1.0\" encoding= \"UTF-8\" standalone=\"yes\"?>
-					<xml>
-						
-						<errorCode>1</errorCode>
-					</xml>
-					";
+		$stringXML = <<<XML
+<?xml version= \"1.0\" encoding= \"UTF-8\" standalone=\"yes\"?>
+<xml>
+	3
+	<errorCode>1</errorCode>
+</xml>
+XML;
 		echo $stringXML;
 	}
 
