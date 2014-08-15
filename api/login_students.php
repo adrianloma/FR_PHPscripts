@@ -1,6 +1,6 @@
 <?php
 	//blowfish encryption class
-	require('C:\xampp\htdocs\FreedomRun\Blowfish\blowfish.class.php');
+	require('../Blowfish/blowfish.class.php');
 
 	$HOST="173.194.252.10";
 	$USER="andres";
@@ -8,12 +8,12 @@
 	$DB="FreedomRun";
 
 	if(isset($_POST['username']) && isset($_POST['password'])){
-		//$username = $_POST['username'];
-		//$password = $_POST['password'];
+		$username = $_POST['username'];
+		$password = $_POST['password'];
 	}
 	
-	$username = "andresgtz79@gmail.com";
-	$password = "123456";
+	// $username = "andresgtz79@gmail.com";
+	// $password = "123456";
 	
 	//connection if there is a username and password exist
 	if($username && $password){
