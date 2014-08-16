@@ -7,10 +7,10 @@
 	$PSW="laracroft";
 	$DB="FreedomRun";
 
-	if(isset($_POST['username']) && isset($_POST['password'])){
-		$username = $_POST['username'];
-		$password = $_POST['password'];
-	}
+	// if(isset($_POST['username']) && isset($_POST['password'])){
+	// 	$username = $_POST['username'];
+	// 	$password = $_POST['password'];
+	// }
 
 	//$connect = mysqli_connect($HOST,$USER,$PSW,$DB);
 
@@ -22,8 +22,8 @@
 			  '/cloudsql/gathr-app-618:gathrdb'
 			  );
 
-	// $username = "andresgtz79@gmail.com";
-	// $password = "123456";
+	$username = "andresgtz79@gmail.com";
+	$password = "123456";
 	
 	//connection if there is a username and password exist
 	if($username && $password){
@@ -32,19 +32,20 @@
 		//$query = mysqli_query($connect,"SELECT * FROM students WHERE email='$username'");
 		$query = $connect -> query("SELECT * FROM students WHERE email='$username'");
 		$array = $query -> fetch_assoc();
-		//$numrows = mysqli_num_rows($query);
+		$numrows = mysqli_num_rows($query);
 
 		//if username is found in the db.
-		if($numrows==1 || true){
+		if($numrows==1){
 
 			//fetches query into associative array
-			$array = $query->fetch_assoc();
+			$array = mysqli_fetch_assoc($query);
 
 			//creates a Bcrypt object
 			$bcrypt= new Bcrypt(4);
-//
+//			
+			echo $array["password"]."password php";
 			//uses Bcrypt method to verify if the password matches the database password
-			if($bcrypt->verify($password,$array["password"])){
+			if(password_verify($array["password"], $password)){
 				//falta agregar progress p1 y progress por pregunta al xml
 
 				$query2 = mysqli_query($connect,

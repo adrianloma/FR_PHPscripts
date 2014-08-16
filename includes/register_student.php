@@ -76,7 +76,7 @@ $DB="FreedomRun";
 
 	//Password encryption
 	$bcrypt = new Bcrypt(4);
-	$password = $bcrypt->hash($password);
+	$password = password_hash($password, PASSWORD_BCRYPT);//$bcrypt->hash($password);
 
 	//database connection
 	$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");

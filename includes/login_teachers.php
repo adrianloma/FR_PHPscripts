@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	//blowfish encryption class
-	require('C:\xampp\htdocs\FreedomRun\Blowfish\blowfish.class.php');
+	require('../Blowfish/blowfish.class.php');
 
 $HOST="173.194.252.10";
 $USER="andres";
@@ -17,7 +17,14 @@ $DB="FreedomRun";
 	//connection if there is a username and password exist
 	if($username && $password){
 
-		$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
+		//$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
+			$connect = new mysqli(null,
+			  'root', // username
+			  'laracroft',     // password
+			  'FreedomRun',		
+			  null,
+			  '/cloudsql/gathr-app-618:gathrdb'
+			  );
 		$query = mysqli_query($connect,"SELECT * FROM teachers WHERE email='$username'");
 		$numrows = mysqli_num_rows($query);
 
