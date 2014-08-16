@@ -31,11 +31,12 @@
 		
 		//$query = mysqli_query($connect,"SELECT * FROM students WHERE email='$username'");
 		$query = $connect -> query("SELECT * FROM students WHERE email='$username'");
-		$array = $query -> fetch_assoc();
+		echo "SELECT * FROM students WHERE email='$username'";
+		$array = mysqli_fetch_assoc($query);
 		$numrows = mysqli_num_rows($query);
 
 		//if username is found in the db.
-		if($numrows==1){
+		if($numrows==1 || true){
 
 			//fetches query into associative array
 			$array = mysqli_fetch_assoc($query);
@@ -44,6 +45,7 @@
 			$bcrypt= new Bcrypt(4);
 //			
 			echo $array["password"]."password php";
+			echo $_POST["password"]."password post";
 			//uses Bcrypt method to verify if the password matches the database password
 			if(password_verify($array["password"], $password)){
 				//falta agregar progress p1 y progress por pregunta al xml
