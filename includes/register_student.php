@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('C:\xampp\htdocs\FreedomRun\Blowfish\blowfish.class.php');
+require('../Blowfish/blowfish.class.php');
 
 $HOST="173.194.252.10";
 $USER="andres";
@@ -79,8 +79,9 @@ $DB="FreedomRun";
 	$password = password_hash($password, PASSWORD_BCRYPT);//$bcrypt->hash($password);
 
 	//database connection
-	$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
+	//$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
 	
+	require('connect.php');
 
 	//Validation code query
 	$query = mysqli_query($connect,"SELECT * FROM validations WHERE validation='$validation_code' and teacher_email='$_SESSION[CurrentUser]'");

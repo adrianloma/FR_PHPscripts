@@ -7,7 +7,9 @@ $PSW="andres";
 $DB="FreedomRun";
 
 
-$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
+//$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
+
+require('connect.php');
 
 if(isset($_POST['email'])){
 	$email=$_POST['email'];

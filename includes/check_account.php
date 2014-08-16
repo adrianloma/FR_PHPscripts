@@ -15,13 +15,9 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 
 
 //$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
-	$connect = new mysqli(null,
-			  'root', // username
-			  'laracroft',     // password
-			  'FreedomRun',
-			  null,
-			  '/cloudsql/gathr-app-618:gathrdb'
-			  );
+
+require('connect.php');
+
 $testQuery = mysqli_query($connect, "SELECT * from district");
 $query = mysqli_query($connect,"SELECT * FROM district WHERE email='$username'");
 

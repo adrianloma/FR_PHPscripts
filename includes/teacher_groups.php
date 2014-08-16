@@ -9,7 +9,10 @@ $DB="FreedomRun";
 
 
 //database connection
-$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
+//$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
+
+
+require('connect.php');
 
 $query = mysqli_query($connect,"SELECT group_id, validation, max_students FROM validations WHERE teacher_email='$_SESSION[CurrentUser]' group by group_id");
 

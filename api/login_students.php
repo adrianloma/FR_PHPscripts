@@ -14,13 +14,8 @@
 
 	//$connect = mysqli_connect($HOST,$USER,$PSW,$DB);
 
-	$connect = new mysqli(null,
-			  'root', // username
-			  'laracroft',     // password
-			  'FreedomRun',
-			  null,
-			  '/cloudsql/gathr-app-618:gathrdb'
-			  );
+	
+	require('connect.php');;
 
 	$username = "andresgtz79@gmail.com";
 	$password = "123456";

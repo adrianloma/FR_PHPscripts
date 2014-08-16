@@ -6,7 +6,7 @@ $PSW="andres";
 $DB="FreedomRun";
 
 session_start();
-require('C:\xampp\htdocs\FreedomRun\Blowfish\blowfish.class.php');
+require('..\Blowfish\blowfish.class.php');
 
 	$fname = $_POST['fname'];
 	$lname = $_POST['lname'];
@@ -62,7 +62,9 @@ require('C:\xampp\htdocs\FreedomRun\Blowfish\blowfish.class.php');
 	$password = $bcrypt->hash($password);
 
 	//database connection
-	$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
+	//$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
+	
+	require('connect.php');
 	
 	//Checks if teacher already exists in database
 	$query = mysqli_query($connect,"SELECT * FROM teachers WHERE email='$email'");

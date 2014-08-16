@@ -8,7 +8,9 @@ $DB="FreedomRun";
 
 
 //database connection
-$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
+//$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
+
+require('connect.php');
 
 $query = mysqli_query($connect,
 	"SELECT t.email, t.teacher_id, t.fname,t.lname

@@ -8,7 +8,10 @@ $PSW="andres";
 $DB="FreedomRun";
 
 //database connection
-$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
+//$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
+
+require('connect.php');
+
 
 //variable definition
 if(isset($_POST['fname'])){

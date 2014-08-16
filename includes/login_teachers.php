@@ -18,13 +18,9 @@ $DB="FreedomRun";
 	if($username && $password){
 
 		//$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
-			$connect = new mysqli(null,
-			  'root', // username
-			  'laracroft',     // password
-			  'FreedomRun',		
-			  null,
-			  '/cloudsql/gathr-app-618:gathrdb'
-			  );
+
+		require('connect.php');
+
 		$query = mysqli_query($connect,"SELECT * FROM teachers WHERE email='$username'");
 		$numrows = mysqli_num_rows($query);
 

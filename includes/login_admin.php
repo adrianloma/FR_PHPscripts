@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	//blowfish encryption class
-	require('C:\xampp\htdocs\FreedomRun\Blowfish\blowfish.class.php');
+	require('../Blowfish/blowfish.class.php');
 
 	$HOST="localhost";
 	$USER="root";

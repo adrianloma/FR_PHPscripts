@@ -42,8 +42,10 @@ $DB="FreedomRun";
 
 
 
-		$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
+		//$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
 		
+		require('connect.php');
+
 		$query = mysqli_query($connect,"SELECT * FROM teachers WHERE email='$email'");
 		$numrows = mysqli_num_rows($query);
 
