@@ -8,7 +8,7 @@ $DB="FreedomRun";
 require('../includes/connect.php')
 
 //connect to database
-if($connect){
+
 	//POST
 	if(isset($_POST['xml'])){
 		$stringXML = $_POST['xml'];
@@ -23,9 +23,10 @@ if($connect){
 	$sound = $xml->sound;
 	$avatar = $xml->avatar;
 	$date = $xml->date;
+	$email = $xml->email;
 
 	//language sound avatar
-	$query = mysqli_connect($connect, 
+	$query = mysqli_query($connect, 
 		"UPDATE students
 		 SET language = '$language',
 		     sound = '$sound',
@@ -156,7 +157,7 @@ if($connect){
 		");
 
 
-	$query = mysqli_connect($connect,
+	$query = mysqli_query($connect,
 		"UPDATE questions_s1_m3
 		 SET q48_right = '$incorrect[48]',
 			q48_wrong = '$incorrect[48]',
@@ -205,7 +206,7 @@ if($connect){
 		");
 
 
-	$query = mysqli_connect($connect,
+	$query = mysqli_query($connect,
 		"UPDATE questions_s1_m4
 		 SET q69_right = '$correct[69]',
 			q69_wrong = '$incorrect[69]',
@@ -255,7 +256,7 @@ if($connect){
 
 		");
 
-	$query = mysqli_connect($connect,
+	$query = mysqli_query($connect,
 		"UPDATE questions_s1_m5
 		 SET q91_right = '$correct[91]',
 			q91_wrong = '$incorrect[91]',
@@ -303,7 +304,7 @@ if($connect){
 
 		");
 
-	$query = mysqli_connect($connect,
+	$query = mysqli_query($connect,
 		"UPDATE questions_s1_m6
 		 SET q112_right ='$correct[112]',
 			q112_wrong ='$incorrect[112]',
@@ -341,7 +342,7 @@ if($connect){
 
 		");
 
-	$query = mysqli_connect($connect,
+	$query = mysqli_query($connect,
 		"UPDATE questions_s1_m7
 		 SET q128_right = '$correct[128]',
 			q128_wrong = '$incorrect[128]',
@@ -376,13 +377,7 @@ if($connect){
 		 WHERE student_email = '$username'
 		");
 
-	//connection succes
-	echo "true"
 
-}else{
-	//connection success
-	echo "false;"
-}
 
 
 
