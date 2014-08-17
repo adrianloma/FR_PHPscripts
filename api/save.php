@@ -45,8 +45,8 @@ if($connect){
 
 	//save levels
 	for($i = 1; $i < 139; $i++){
-		$correct[$i] = $xml->Levels->Level[$i-1]->correct;
-		$incorrect[$i] = $xml->Levels->Level[$i-1]->incorrect;
+		$correct[$i] = $xml->levels->level[$i-1]->correct;
+		$incorrect[$i] = $xml->levels->level[$i-1]->incorrect;
 
 	}
 
