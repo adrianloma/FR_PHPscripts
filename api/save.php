@@ -38,8 +38,8 @@ require('../includes/connect.php');
 
 	for($i = 1; $i <= 12;$i++){
 		$screen = "screen_".$i;
-		$data = $xml->pantallasInformativas[$i]->p;
-		$query = mysqli_connect($connect,
+		$data = $xml->pantallasInformativas->p[$i];
+		$query = mysqli_query($connect,
 			"INSERT INTO info_screens($screen) VALUES($data) WHERE student_email = '$email';
 			");
 	}
