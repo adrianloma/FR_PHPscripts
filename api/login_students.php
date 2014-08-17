@@ -1,6 +1,6 @@
 <?php
 	//blowfish encryption class
-	require('../Blowfish/blowfish.class.php');
+	require('blowfish.class.php');
 
 	$HOST="173.194.252.10";
 	$USER="root";
@@ -17,32 +17,35 @@
 	
 	require('connect.php');;
 
-	$username = "andresgtz79@gmail.com";
-	$password = "123456";
+	$username = "Vivamus@sedpedenec.net";
+	$password = 123456;
 	
 	//connection if there is a username and password exist
 	if($username && $password){
 
 		
 		//$query = mysqli_query($connect,"SELECT * FROM students WHERE email='$username'");
-		$query = $connect -> query("SELECT * FROM students WHERE email='$username'");
-		echo "SELECT * FROM students WHERE email='$username'";
+		$query = mysqli_query($connect,"SELECT * FROM students WHERE email='$username';");
+		//echo "<xml> <p> SELECT * FROM students WHERE email='$username'; </p> </xml>";
 		$array = mysqli_fetch_assoc($query);
 		$numrows = mysqli_num_rows($query);
 
+		//echo $array['password'];
+
 		//if username is found in the db.
-		if($numrows==1 || true){
+		if($numrows==1 ){
 
 			//fetches query into associative array
-			$array = mysqli_fetch_assoc($query);
+			//$array = mysqli_fetch_assoc($query);
 
 			//creates a Bcrypt object
 			$bcrypt= new Bcrypt(4);
 //			
-			echo $array["password"]."password php";
-			echo $_POST["password"]."password post";
+			//echo $array['password']."password php";
+			//echo $_POST["password"]."password post";
 			//uses Bcrypt method to verify if the password matches the database password
-			if(password_verify($array["password"], $password)){
+			if($bcrypt->verify($password,$array["password"])){
+				
 				//falta agregar progress p1 y progress por pregunta al xml
 
 				$query2 = mysqli_query($connect,
@@ -88,29 +91,32 @@
 		<p>$screens[screen_11]</p>
 		<p>$screens[screen_12]</p>
 	</pantallasInforamtivas>
-	<Levels>
+	<levels>
 XML;
 				for($i=1;$i<139;$i++){
 					if($i==1 or $i==24 or $i==48 or $i==69 or $i==91 or $i==112 or $i==128 ){
-						$stringXML .= "<Level>";
+						$stringXML .= "
+		<level>";
 					}
 						$right = "q".$i."_right";
 						$wrong = "q".$i."_wrong";
 					$stringXML .=  "
-
-							<Question>
-								<questionNumber>$i</questionNumber>
-								<correct>$questions[$right]</correct>
-								<incorrect>$questions[$wrong]</incorrect>
-							</Question>
+			<question>
+				<questionNumber>$i</questionNumber>
+				<correct>$questions[$right]</correct>
+				<incorrect>$questions[$wrong]</incorrect>
+			</question>
 					";
 					if($i==23 or $i==47 or $i==68 or $i==90 or $i==111 or $i==127 or $i==138 ){
-						$stringXML .= "</Level>";
+						$stringXML .= "
+		</level>";
 					}
 				}
-					$stringXML .= "</Levels>";
+					$stringXML .= "
+	</levels>";
 
-				$stringXML .= "</xml>";
+				$stringXML .= "
+</xml>";
 				echo $stringXML;					
 			}else{
 				$stringXML = <<<XML
