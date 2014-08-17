@@ -5,7 +5,7 @@ $USER="andres";
 $PSW="andres";
 $DB="FreedomRun";
 
-require('../includes/connect.php')
+require('../includes/connect.php');
 
 //connect to database
 
