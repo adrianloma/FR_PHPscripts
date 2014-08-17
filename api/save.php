@@ -44,11 +44,16 @@ require('../includes/connect.php');
 			");
 	}
 
-	//save levels
-	for($i = 1; $i < 139; $i++){
-		$correct[$i] = $xml->levels->level[$i-1]->correct;
-		$incorrect[$i] = $xml->levels->level[$i-1]->incorrect;
 
+	//save levels
+	$cont=1;
+	for($i = 0; $i < 7; $i++){
+		for($j = 0; $j < $xml->levels->level[$i]->count(); $j++){
+			$correct[$cont] = $xml->levels->level[$i]->question[$j]->correct;
+			$incorrect[$cont] = $xml->levels->level[$i]->question[$j]->incorrect;
+			$cont++;
+		}
+		
 	}
 
 	//table questions_s1_m1
