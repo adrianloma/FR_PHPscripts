@@ -2,26 +2,25 @@
 
 require('blowfish.class.php');
 
-$HOST="173.194.252.10";
-$USER="andres";
-$PSW="andres";
-$DB="FreedomRun";
 
+	//POST
+	if(isset($_POST['xml'])){
+		$stringXML = $_POST['xml'];
+	}
 
-
-	$fname = $_POST['fname'];
-	$lname = $_POST['lname'];
-	$password = $_POST['password'];
-	$gender = $_POST['gender'];
-	$email = $_POST['email'];
-	$validation_code = $_POST['validation_code'];
-	$student_id = $_POST['student_id'];
-	$sound= $_POST['sound'];
-	$language= $_POST['language'];
-	$avatar= $_POST['avatar'];
-
-
+	//STRING TO XML
+	$xml = simplexml_load_string($stringXML);
 	
+	$fname = $xml->fname;
+	$lname = $xml->lname;
+	$password = $xml->password;
+	$gender = $xml->gender;
+	$email = $xml->email;
+	$validation_code = $xml->validation_code;
+	$student_id = $xml->student_id;
+	$sound= $xml->sound;
+	$language= $xml->language;
+	$avatar= $xml->avatar;
 
 	$bcrypt = new Bcrypt(4);
 	$password = $bcrypt->hash($password);
@@ -33,10 +32,10 @@ $DB="FreedomRun";
 		$query = mysqli_query($connect,"SELECT * FROM students WHERE email='$email'");
 		$numrows = mysqli_num_rows($query);
 
-		if($numrows==1){
+		if($numrows < 1 || true){
 			$insert = mysqli_query($connect,
-				"INSERT INTO students (email, student_id, validation, fname, lname, gender, language, sound, avatar, password)
-					VALUES ('$email','$student_id','$validation_code','$fname','$lname','$gender','$language','$sound','$avatar','$password');"
+				"INSERT INTO students (email, student_id, validation, fname, lname, gender, language, sound, avatar, password, currentModule, currentLevel)
+					VALUES ('$email','$student_id','$validation_code','$fname','$lname','$gender','$language','$sound','$avatar','$password', 0 ,0);"
 			);
 
 			$insert = mysqli_query($connect,

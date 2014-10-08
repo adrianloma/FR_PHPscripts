@@ -1,13 +1,5 @@
 <?php
-
-//database credentials
-$HOST="173.194.252.10";
-$USER="root";
-$PSW="";
-$DB="prueba";
-
-//database connection
-$connect = mysqli_connect($HOST,$USER,$PSW,$DB);
+require 'connect.php';
 
 //loads module and level from as3
 $email = $_POST['email'];
@@ -36,7 +28,7 @@ while($row = mysqli_fetch_assoc($query)){
 		case 1:
 			//llena las preguntas dependiendo de que nivel
 			for($i=1;$i<24;$i++){
-				$stringXML . =  "
+				$stringXML .=  "
 					<Question>
 						<questionNumber>$i</questionNumber>
 						<correct>$row[q$i_right]</correct>

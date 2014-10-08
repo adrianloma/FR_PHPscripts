@@ -3,11 +3,6 @@
 	//blowfish encryption class
 	require('../Blowfish/blowfish.class.php');
 
-$HOST="173.194.252.10";
-$USER="andres";
-$PSW="andres";
-$DB="FreedomRun";
-
 	if(isset($_POST['username']) && isset($_POST['password'])){
 		$username = $_POST['username'];
 		$password = $_POST['password'];

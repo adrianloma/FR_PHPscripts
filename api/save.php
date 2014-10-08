@@ -1,10 +1,5 @@
 <?php 
 
-$HOST="173.194.252.10";
-$USER="andres";
-$PSW="andres";
-$DB="FreedomRun";
-
 require('../includes/connect.php');
 
 //connect to database
@@ -24,25 +19,62 @@ require('../includes/connect.php');
 	$avatar = $xml->avatar;
 	$date = $xml->date;
 	$email = $xml->email;
+	$currentModule = $xml->currentModule;
+	$currentLevel = $xml->currentLevel;
 
 	//language sound avatar
 	$query = mysqli_query($connect, 
 		"UPDATE students
 		 SET language = '$language',
 		     sound = '$sound',
-		     avatar = '$avatar'
-		 WHERE student_email = '$username' 
+		     avatar = '$avatar',
+		     currentModule = '$currentModule',
+ 		     currentLevel = '$currentLevel'
+		 WHERE email = '$username' 
 		");
 
 	//pantallas informativas insertar en base de datos
+	// $xmlIterator = new SimpleXMLIterator($xml->pantallasInformativas);
+	// // $xmlIterator->rewind();
+	// $queryString = "UPDATE info_screens SET ";
+	// $screenNumber = 0;
+	// foreach ($xml->pantallasInformativas->p as $key => $value) {
+	//  	# code...
+	//  } { 
+	// 	if(i == 12){
+	// 		$queryString.="screen_$i = $xmlIterator->current()";
+	// 	} else{
+	// 		$queryString.="screen_$i = $xmlIterator->current(), ";
+	// 	}
+	// 	$xmlIterator->next();
+		
+	// }
+	// $queryString.=" WHERE student_email = '$email'";
+	// mysqli_query($connect, $queryString);
 
-	for($i = 1; $i <= 12;$i++){
-		$screen = "screen_".$i;
-		$data = $xml->pantallasInformativas->p[$i];
-		$query = mysqli_query($connect,
-			"INSERT INTO info_screens($screen) VALUES($data) WHERE student_email = '$email';
-			");
-	}
+	$query = mysqli_query($connect, 
+		"UPDATE info_screens
+		SET screen_1 = $xml->pantallasInformativas->p[0],
+		 screen_2 = $xml->pantallasInformativas->p[1],
+		 screen_3 = $xml->pantallasInformativas->p[2],
+		 screen_4 = $xml->pantallasInformativas->p[3],
+		 screen_5 = $xml->pantallasInformativas->p[4],
+		 screen_6 = $xml->pantallasInformativas->p[5],
+		 screen_7 = $xml->pantallasInformativas->p[6],
+		 screen_8 = $xml->pantallasInformativas->p[7],
+		 screen_9 = $xml->pantallasInformativas->p[8],
+		 screen_10 = $xml->pantallasInformativas->p[9],
+		 screen_11 = $xml->pantallasInformativas->p[10],
+		 screen_12 = $xml->pantallasInformativas->p[11]
+		 WHERE student_email  = '$username' 
+		");
+	// for($i = 1; $i <= 12;$i++){
+	// 	$screen = "screen_".$i;
+	// 	$data = $xml->pantallasInformativas->p[$i];
+	// 	$query = mysqli_query($connect,
+	// 		"UPDATE info_screens SET  VALUES($data) WHERE student_email = '$email';
+	// 		");
+	// }
 
 
 	//save levels

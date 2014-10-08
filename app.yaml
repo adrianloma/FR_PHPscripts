@@ -1,5 +1,5 @@
-application: freedom-run-666
-version: 2
+application: freedomrun-001
+version: 1
 runtime: php
 api_version: 1
 threadsafe: yes
@@ -7,6 +7,15 @@ threadsafe: yes
 handlers:
 - url: /(.+\.php)$
   script: \1
+
+# handlers:
+- url: /(.*\.(gif|png|jpg|ico|js|css|swf|xml))
+  static_files: \1
+  upload: (.*\.(gif|png|jpg|ico|js|css|swf|xml))
+
+- url: /robots.txt
+  static_files: robots.txt
+  upload: robots.txt 
 
 - url: .*
   script: index.php

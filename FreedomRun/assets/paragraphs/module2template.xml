@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Test XML file for Freedom Run-->
+<Module name="2">
+	<Unit name= "1">
+		<Chapter name="2.1">
+			<topic name="2.1.1">
+				<English>
+					<unitname name= "The name of the unit">AAAAAAAAAAAAAAA</unitname>
+					<chaptername name="The name of the chapter">BBBBBBBBBBBBBBBBB</chaptername>
+					<sectionname name="The name of the section">CCCCCCCCCCCCCCCCC</sectionname>
+
+					<slide name= "2.1.1.1">
+						<title name="The title of the slide">DDDDDDDDDDDDDDD</title>
+						<description name="Brief description of the events">GGGGGGGGGGGGGGGGGGGGGGGG</description>
+						<cause name="The cause of the events">HHHHHHHHHHHHHHHHHHHHHHH</cause>
+						<effect name="The effect that the events had">IIIIIIIIIIIIIIIIIIIIIIII</effect>
+						<basic_characteristics name= "the bullets of the basic characteristics">
+							<basictext name= "b1">JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ</basictext>
+						</basic_characteristics>
+						<key_words name= "The main key_words of the slide">
+							<keytext name= "k1">KKKKKKKKKKKKKKKKKKKKK</keytext>
+						</key_words>
+					</slide>
+				</English>
+				<Spanish>
+					<unitname name= "The name of the unit">Unidad 2: La creación de una nueva nación</unitname>
+					<chaptername name="The name of the chapter">Capitulo 2.3: La creación de la Constitución</chaptername>
+					<sectionname name="The name of the section">Sección 2.3.1: Gobernar la nueva nación</sectionname>
+					<slide name= "1.1.1.1">
+						<title name="The title of the slide">Los artículos de la Confederación</title>
+						<description name="Brief description of the events">Mientras los estados redactaban sus constituciones, el Congreso creó un documento para toda la nación llamado Artículos de la Confederación.</description>
+						<cause name="The cause of the events">Causa: El gobierno de la nueva nación</cause>
+						<effect name="The effect that the events had">Efecto: Unificación</effect>
+						<basic_characteristics name= "the bullets of the basic characteristics">
+							<basictext name= "b1">1. El Congreso redactó un documento de gobierno para la nación llamado Artículos de Confederación. Este documento se aprobó en 1777.</basictext>
+							<basictext name= "b2">2. A diferencia de tener los tres poderes de gobierno como la mayoría de los estados, el gobierno solo tenía uno. No había poder ejecutivo ni un sistema nacional de tribunales y tenían un poder limitado.</basictext>
+							<basictext name= "b3">3. Para evitar el mismo problema de las colonias, la nueva nación tenía un gobierno central con poder limitado. El poder permanecería en los estados.</basictext>
+							<basictext name= "b4">4. El estado no podía recaudar impuestos ni regular el comercio. Si necesitaba dinero se lo pedía a los estados.</basictext>
+							<basictext name= "b5">5. Los artículos le otorgaban poderes para comercio exterior y con los indígenas americanos así como aprobar leyes, declarar guerras, acuñar dinero y pedir prestado.</basictext> 
+							<basictext name= "b6">6. No tenía poder para hacer cumplir las leyes.</basictext>
+						</basic_characteristics>
+						<key_words name= "The main key_words of the slide">
+							<keytext name= "k1">Artículos de la Confederación --- poderes del gobierno limitados --- más poder a los estados</keytext></key_words>
+						</slide>
+					</Spanish>
+				</topic>
+				<!--In this area the practice begins-->
+				<!--Place the correct types you wish inside the <practice> tag-->
+	<practice name="the practice in general">
+		<type name="type 1 and 2">
+			<unitname name="The name of the unit"></unitname>
+				<definition name="small text"></definition>
+				<ideas name="The ideas of the practice">
+					<correct name="The correct ideas">
+						<c></c>
+						<c></c>
+					</correct>
+					<incorrect name="The incorrect ideas">
+						<i></i>
+						<i></i>
+						<i></i>
+					</incorrect>
+				</ideas>
+				<image> </image>
+		</type>
+		<type name="type 3">
+			<unitname name="The name of the unit"></unitname>
+				<circlename name="the names in the circle, two small texts">
+					<text></text>
+					<text></text>
+				</circlename>	
+				<characteristics name="two equal characteristics">
+					<chara></chara>
+					<chara></chara>
+				</characteristics>
+				<characteristicOne name="the characteristics of circle one">
+					<charOne></charOne>
+					<charOne></charOne>
+					<charOne></charOne>
+				</characteristicOne>
+				<characteristicTwo name="the characteristics of circle two">
+					<charTwo></charTwo>
+					<charTwo></charTwo>
+					<charTwo></charTwo>
+				</characteristicTwo>
+		</type>
+		<type name= "type 6">
+			<unitname name="The name of the unit"></unitname>
+			<definition name="small text"></definition>
+			<events name="the events that needed to be in cronological order">
+				<event></event>
+				<event></event>
+				<event></event>
+				<event></event>
+				<event></event>
+				<event></event>
+			</events>
+		</type>
+		<type name= "type 7">
+			<unitname name="The name of the unit"></unitname>
+			<definition name="small text"></definition>
+			<image></image>
+			<cause name="the causes">
+				<c></c>
+				<c></c>
+				<c></c>	
+			</cause>
+			<effects name="effects">
+				<e></e>
+				<e></e>
+				<e></e>
+			</effects>
+		</type>
+		<type name="type 8">
+			<unitname name="The name of the unit"></unitname>
+			<definition name="small text"></definition>
+			<list name="list 1 of 2, 4 elements inside">
+				<element></element>
+				<element></element>
+				<element></element>
+			</list>
+			<list name= "list 2 of 2, 4 elements inside">
+				<element></element>
+				<element></element>
+				<element></element>
+				<element></element>
+			</list>
+		</type>
+		<type name="type 9">
+			<question name="The multiple choice question"></question>
+			<answers name="the possible answers, the first option is the correct answer">
+				<option></option>
+				<option></option>
+				<option></option>
+				<option></option>
+			</answers>
+		</type>
+	</practice>
+	</Chapter>
+	</Unit>
+</Module>

@@ -2,23 +2,19 @@
 	//blowfish encryption class
 	require('blowfish.class.php');
 
-	$HOST="173.194.252.10";
-	$USER="root";
-	$PSW="laracroft";
-	$DB="FreedomRun";
 
-	// if(isset($_POST['username']) && isset($_POST['password'])){
-	// 	$username = $_POST['username'];
-	// 	$password = $_POST['password'];
-	// }
+	if(isset($_POST['username']) && isset($_POST['password'])){
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+	}
 
 	//$connect = mysqli_connect($HOST,$USER,$PSW,$DB);
 
 	
 	require('connect.php');;
 
-	$username = "Vivamus@sedpedenec.net";
-	$password = 123456;
+	// $username = "Vivamus@sedpedenec.net";
+	// $password = 123456;
 	
 	//connection if there is a username and password exist
 	if($username && $password){
@@ -75,9 +71,9 @@
 	<language>$array[language]</language>
 	<sound>$array[sound]</sound>
 	<avatar>$array[avatar]</avatar>
-	<currentModule></currentModule>
-	<currentLevel></currentLevel>
-	<pantallasInforamtivas>
+	<currentModule>$array[currentModule]</currentModule>
+	<currentLevel>$array[currentLevel]</currentLevel>
+	<pantallasInformativas>
 		<p>$screens[screen_1]</p>
 		<p>$screens[screen_2]</p>
 		<p>$screens[screen_3]</p>
@@ -90,7 +86,7 @@
 		<p>$screens[screen_10]</p>
 		<p>$screens[screen_11]</p>
 		<p>$screens[screen_12]</p>
-	</pantallasInforamtivas>
+	</pantallasInformativas>
 	<levels>
 XML;
 				for($i=1;$i<139;$i++){

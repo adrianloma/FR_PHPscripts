@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('../Blowfish/blowfish.class.php');
+require('blowfish.class.php');
 
 $HOST="173.194.252.10";
 $USER="andres";
@@ -76,7 +76,7 @@ $DB="FreedomRun";
 
 	//Password encryption
 	$bcrypt = new Bcrypt(4);
-	$password = password_hash($password, PASSWORD_BCRYPT);//$bcrypt->hash($password);
+	$password = $bcrypt->hash($password); //password_hash($password, PASSWORD_BCRYPT);//
 
 	//database connection
 	//$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
@@ -108,8 +108,8 @@ $DB="FreedomRun";
 	if($numrows==0){
 		//students table
 		$insert = mysqli_query($connect,
-			"INSERT INTO students (email,student_id, validation, fname, lname, gender, language, sound, avatar, password)
-				VALUES ('$email','$student_id','$validation_code','$fname','$lname','$gender','$language','$sound','$avatar','$password');"
+			"INSERT INTO students (email,student_id, validation, fname, lname, gender, language, sound, avatar, password, currentModule, currentLevel)
+				VALUES ('$email','$student_id','$validation_code','$fname','$lname','$gender','$language','$sound','$avatar','$password', 0 , 0);"
 				
 		)or die(mysqli_error($connect));
 

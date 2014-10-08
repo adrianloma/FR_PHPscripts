@@ -1,20 +1,12 @@
 <?php
 session_start();
 //determina si la cuenta es de maestros o de administrador
-$HOST="173.194.252.10";
-$USER="andres";
-$PSW="andres";
-$DB="FreedomRun";
-
-
 
 if(isset($_POST['username']) && isset($_POST['password'])){
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 }
 
-
-//$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
 
 require('connect.php');
 
@@ -35,7 +27,5 @@ if($num_rows == 1){
 	$_SESSION['type'] = "teacher";
 	include 'login_teachers.php';
 }
-
-
 
 ?>

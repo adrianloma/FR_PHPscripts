@@ -1,12 +1,9 @@
 <?php
 	session_start();
 	//blowfish encryption class
-	require('../Blowfish/blowfish.class.php');
+	require('blowfish.class.php');
 
-	$HOST="localhost";
-	$USER="root";
-	$PSW="";
-	$DB="prueba";
+	require('connect.php');
 
 	if(isset($_POST['username']) && isset($_POST['password'])){
 		$username = $_POST['username'];
@@ -17,7 +14,6 @@
 	//connection if there is a username and password exist
 	if($username && $password){
 
-		$connect = mysqli_connect($HOST,$USER,$PSW,$DB) or die("Fatal error: couldn't connecto to the database");
 		$query = mysqli_query($connect,"SELECT * FROM district WHERE email='$username'");
 		$numrows = mysqli_num_rows($query);
 
