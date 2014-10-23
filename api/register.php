@@ -28,7 +28,9 @@ require('blowfish.class.php');
 
 
 		require('connect.php');
-		
+
+		$success = true;
+
 		$query = mysqli_query($connect,"SELECT * FROM students WHERE email='$email'");
 		$numrows = mysqli_num_rows($query);
 
@@ -38,63 +40,95 @@ require('blowfish.class.php');
 					VALUES ('$email','$student_id','$validation_code','$fname','$lname','$gender','$language','$sound','$avatar','$password', 0 ,0);"
 			);
 
+			if(mysqli_errno($connect)){
+				$success = false;
+			}
+
 			$insert = mysqli_query($connect,
 			"INSERT INTO updates(student_email)
 				VALUES ('$email');"
 				
 			);
-
+			if(mysqli_errno($connect)){
+				$success = false;
+			}
 			//info screens
 			$insert = mysqli_query($connect,
 				"INSERT INTO info_screens(student_email)
 					VALUES ('$email');"
 					
 			);
-
+			if(mysqli_errno($connect)){
+				$success = false;
+			}
 			//questions_s1_m1
 			$insert = mysqli_query($connect,
 				"INSERT INTO questions_s1_m1 (student_email)
 					VALUES ('$email');"
 					
 			);
+			if(mysqli_errno($connect)){
+				$success = false;
+			}
 			//questions_s1_m2
 			$insert = mysqli_query($connect,
 				"INSERT INTO questions_s1_m2 (student_email)
 					VALUES ('$email');"
 					
 			);
+			if(mysqli_errno($connect)){
+				$success = false;
+			}
 			//questions_s1_m3
 			$insert = mysqli_query($connect,
 				"INSERT INTO questions_s1_m3 (student_email)
 					VALUES ('$email');"
 					
 			);
-
+			if(mysqli_errno($connect)){
+				$success = false;
+			}
 			//questions_s1_m4
 			$insert = mysqli_query($connect,
 				"INSERT INTO questions_s1_m4 (student_email)
 					VALUES ('$email');"
 					
 			);
+			if(mysqli_errno($connect)){
+				$success = false;
+			}
 			//questions_s1_m5
 			$insert = mysqli_query($connect,
 				"INSERT INTO questions_s1_m5 (student_email)
 					VALUES ('$email');"
 					
 			);
+			if(mysqli_errno($connect)){
+				$success = false;
+			}
 			//questions_s1_m6
 			$insert = mysqli_query($connect,
 				"INSERT INTO questions_s1_m6 (student_email)
 					VALUES ('$email');"
 					
 			);
+			if(mysqli_errno($connect)){
+				$success = false;
+			}
 			//questions_s1_m7
 			$insert = mysqli_query($connect,
 				"INSERT INTO questions_s1_m7 (student_email)
 					VALUES ('$email');"
 					
 			);
+			if(mysqli_errno($connect)){
+				$success = false;
+			}
 
+		if($success)
+			echo "true";
+		else
+			echo "false";
 		
 			
 		}else{
